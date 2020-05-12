@@ -18,22 +18,37 @@ End Sub
 Private Sub CommandButton2_Click()
 
 If Sheet1.ComboBox1.Value = "Knoop" Then
-h = 14.2 * ((Range("G7")) / (Range("G8") ^ 2))
+If Range("G7").Value = "" Or Range("G9").Value = "" Then
+MsgBox "Error! Missing one or more required values!"
+Else
+h = 14.2 * ((Range("G7")) / (Range("G9") ^ 2))
 Range("C17").Value = h
 Range("C18").Value = "HK"
+End If
 
 ElseIf Sheet1.ComboBox1.Value = "Vickers" Then
+If Range("G7").Value = "" Or Range("G8").Value = "" Then
+MsgBox "Error! Missing one or more required values!"
+Else
 h = (1.854 * Range("G7")) / (Range("G8") ^ 2)
 Range("C17").Value = h
 Range("C18").Value = "HV"
+End If
 
 ElseIf Sheet1.ComboBox1.Value = "Brinell" Then
+If Range("G7").Value = "" Or Range("G8").Value = "" Or Range("G9").Value = "" Then
+MsgBox "Error! Missing one or more required values!"
+Else
 pi = Application.WorksheetFunction.pi()
-num = 2 * Range("G7")
-denom = pi * Range("G9") * (Range("G9") - Sqr((Range("G9") ^ 2) - (Range("G8") ^ 2)))
+num = 2 * Range("G7").Value
+denom = pi * Range("G9").Value * (Range("G9").Value - (Sqr((Range("G9").Value ^ 2) - (Range("G8").Value ^ 2))))
 h = num / denom
 Range("C17").Value = h
 Range("C18").Value = "BHN"
+End If
+
+ElseIf Sheet1.ComboBox1.Value = "" Then
+MsgBox "Error! No hardness test selected"
 
 End If
 
