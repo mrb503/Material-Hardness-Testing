@@ -1,4 +1,4 @@
-# ENGR-01283
+# Material Hardness Testing
 
 ## General Information
 This repository contains my final project for my Spring 2020 **Materials Science and Manufacturing** course.
